@@ -1,6 +1,6 @@
 # Chore Scheduler Microservice
 This microservice generates a weekly schedule based on user-provided day-of-the-week preference rankings. It uses text files as a communication pipe: request.txt for input and response.txt for output. This README defines the communication contract for interacting with the microservice programmatically.
-
+~~                                                                                                                                                                                    ~~
 ## Communication Contract
 ### Overview
 **Input File**: request.txt - Where clients write their ranking data.
