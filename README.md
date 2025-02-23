@@ -94,6 +94,7 @@ for day, people in schedule.items():
 
 ### Expected Output
 For the example request above (Joe and Matt), the output in response.txt might look like:
+
 **json**
 ```
 {
