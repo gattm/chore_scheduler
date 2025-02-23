@@ -24,12 +24,14 @@ preference_* is an integer from 1 (most preferred) to 7 (least preferred), with 
 
 **Example**: Joe,1,2,3,4,5,6,7 means Joe prefers Sunday (1) most and Saturday (7) least.
 
+
 ### Write to request.txt:
 Open request.txt in write mode ("w") and write all rankings as lines of comma-separated values.
 
 Ensure the file is fully written before closing it (use proper file handling to avoid partial writes).
 
 The microservice will detect the file change and process it.
+
 
 ### Timing:
 After writing, wait briefly (e.g., 0.5 seconds) to allow the microservice to process the request.
