@@ -51,3 +51,64 @@ with open("request.txt", "w") as file:
 # Wait for the microservice to process
 time.sleep(0.5)
 ```
+
+### How to Programmatically RECEIVE Data
+### Instructions
+
+**Wait for response.txt:**
+
+After writing to request.txt, monitor for the existence of response.txt.
+
+The microservice writes the schedule to response.txt and clears request.txt when processing is complete.
+
+**Read response.txt:**
+
+Open response.txt in read mode ("r") and parse the JSON content.
+
+The JSON object is a dictionary where keys are day names (Sunday, Monday, etc.), and values are lists of assigned names or ["Free Day"] if no one is assigned.
+
+**Handle Timing:**
+
+Poll response.txt until it exists (e.g., with a small delay like 0.1 seconds between checks).
+
+Once read, the schedule is ready for use.
+
+### Example Call (Python)
+```
+import json
+import os
+import time
+
+# Wait for response.txt to be generated
+while not os.path.exists("response.txt"):
+    time.sleep(0.1)
+
+# Read and parse the schedule
+with open("response.txt", "r") as file:
+    schedule = json.load(file)
+
+# Example usage: print the schedule
+for day, people in schedule.items():
+    print(f"{day}: {people}")
+```
+
+### Expected Output
+For the example request above (Joe and Matt), the output in response.txt might look like:
+**json**
+```
+{
+    "Sunday": [["Joe"]],
+    "Monday": [["Matt"]],
+    "Tuesday": ["Free Day"],
+    "Wednesday": ["Free Day"],
+    "Thursday": ["Free Day"],
+    "Friday": ["Free Day"],
+    "Saturday": ["Free Day"]
+}
+```
+### Notes
+- Error Handling: Ensure your code handles cases where request.txt or response.txt might be temporarily locked or unavailable due to file I/O.
+
+- Running the Microservice: The teammate must ensure scheduler.py is running in the background before making requests.
+
+- File Location: Both request.txt and response.txt should be in the same directory as the microservice script.
