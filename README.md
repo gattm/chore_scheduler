@@ -118,4 +118,4 @@ For the example request above (Joe and Matt), the output in response.txt might l
 - File Location: Both request.txt and response.txt should be in the same directory as the microservice script.
 
 ## UML Sequence Diagram
-/assets/images/UMLSequenceDiagram.png
+!(/assets/images/UMLSequenceDiagram.png)
