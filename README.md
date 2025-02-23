@@ -11,7 +11,7 @@ This microservice generates a weekly schedule based on user-provided day-of-the-
 
 **Behavior**: The microservice monitors request.txt for changes, processes the rankings, writes the schedule to response.txt, and clears request.txt when done.
 
-### How to Programmatically REQUEST Data
+## How to Programmatically REQUEST Data
 ### Instructions
 
 **Prepare Your Rankings:**
