@@ -34,21 +34,20 @@ The microservice will detect the file change and process it.
 ### Timing:
 After writing, wait briefly (e.g., 0.5 seconds) to allow the microservice to process the request.
 
-## Example Call
+## Example Request
 ```
-import json
-import os
 import time
 
-# Wait for response.txt to be generated
-while not os.path.exists("response.txt"):
-    time.sleep(0.1)
+# Define rankings
+rankings = [
+    "Joe,1,2,3,4,5,6,7",
+    "Matt,2,1,3,4,5,6,7"
+]
 
-# Read and parse the schedule
-with open("response.txt", "r") as file:
-    schedule = json.load(file)
+# Write rankings to request.txt
+with open("request.txt", "w") as file:
+    file.write("\n".join(rankings))
 
-# Example usage: print the schedule
-for day, people in schedule.items():
-    print(f"{day}: {people}")
+# Wait for the microservice to process
+time.sleep(0.5)
 ```
