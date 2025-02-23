@@ -4,7 +4,9 @@ This microservice generates a weekly schedule based on user-provided day-of-the-
 ## Communication Contract
 ### Overview
 Input File: request.txt - Where clients write their ranking data.
+
 Output File: response.txt - Where the microservice writes the generated schedule.
+
 Format: Rankings are provided as comma-separated values (CSV) in request.txt, and the schedule is returned as JSON in response.txt.
 Behavior: The microservice monitors request.txt for changes, processes the rankings, writes the schedule to response.txt, and clears request.txt when done.
 ### How to Programmatically REQUEST Data
