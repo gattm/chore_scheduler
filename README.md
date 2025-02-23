@@ -52,7 +52,7 @@ with open("request.txt", "w") as file:
 time.sleep(0.5)
 ```
 
-### How to Programmatically RECEIVE Data
+## How to Programmatically RECEIVE Data
 ### Instructions
 
 **Wait for response.txt:**
