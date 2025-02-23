@@ -109,7 +109,7 @@ For the example request above (Joe and Matt), the output in response.txt might l
     "Saturday": ["Free Day"]
 }
 ```
-~~                                                                                                                                                                                   ~~
+
 ### Notes
 - Error Handling: Ensure your code handles cases where request.txt or response.txt might be temporarily locked or unavailable due to file I/O.
 
