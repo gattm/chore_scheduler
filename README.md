@@ -116,3 +116,6 @@ For the example request above (Joe and Matt), the output in response.txt might l
 - Running the Microservice: The teammate must ensure scheduler.py is running in the background before making requests.
 
 - File Location: Both request.txt and response.txt should be in the same directory as the microservice script.
+
+## UML Sequence Diagram
+
