@@ -75,7 +75,7 @@ Poll response.txt until it exists (e.g., with a small delay like 0.1 seconds bet
 
 Once read, the schedule is ready for use.
 
-### Example Call (Python)
+## Example Call (Python)
 ```
 import json
 import os
@@ -94,7 +94,7 @@ for day, people in schedule.items():
     print(f"{day}: {people}")
 ```
 
-### Expected Output
+## Expected Output
 For the example request above (Joe and Matt), the output in response.txt might look like:
 
 **json**
