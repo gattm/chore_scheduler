@@ -22,7 +22,7 @@ Each line in request.txt represents one person's preferences.
 
 - name is a string (no commas allowed).
 
-- preference_* is an integer from 1 (most preferred) to 7 (least preferred), with no duplicates per person.
+- preference_day is an integer from 1 (most preferred) to 7 (least preferred), with no duplicates per person.
 
 **Example**: Joe,1,2,3,4,5,6,7 means Joe prefers Sunday (1) most and Saturday (7) least.
 
