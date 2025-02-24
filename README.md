@@ -17,11 +17,12 @@ This microservice generates a weekly schedule based on user-provided day-of-the-
 **Prepare Your Rankings:**
 Each line in request.txt represents one person's preferences.
 
-**Format**: name, preference_sun, preference_mon, preference_tue, preference_wed, preference_thu, preference_fri, preference_sat
+**Format**: 
+- name, preference_sun, preference_mon, preference_tue, preference_wed, preference_thu, preference_fri, preference_sat
 
--name is a string (no commas allowed).
+- name is a string (no commas allowed).
 
-preference_* is an integer from 1 (most preferred) to 7 (least preferred), with no duplicates per person.
+- preference_* is an integer from 1 (most preferred) to 7 (least preferred), with no duplicates per person.
 
 **Example**: Joe,1,2,3,4,5,6,7 means Joe prefers Sunday (1) most and Saturday (7) least.
 
