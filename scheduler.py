@@ -4,7 +4,8 @@ import os
 import random
 
 
-# rankings = list of nested lists containing a name and day of the week preference rankings. Indices 1-6 represent Sun-Sat, and should contain a value 1-7, nonrepeating.
+# rankings = list of nested lists containing a name and day of the week preference rankings.
+# Indices 1-6 represent Sun-Sat, and should contain a value 1-7, non-repeating.
 # Ex: [[Joe, 1, 3, 4, 2, 6, 5, 7]]
 def scheduler(rankings):
     days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -32,18 +33,32 @@ def scheduler(rankings):
             reassign.extend(names[allowed_per_day:])
             extra_slots = max(extra_slots - 1, 0)
 
-    empty_days = [day for day in days if not schedule[day]]
-    for day in empty_days:
-        if reassign:
-            schedule[day].append(reassign.pop(0))
+# Randomize those to be reassigned for fairness
+    random.shuffle(reassign)
 
-    day_index = 0
-    while reassign:
-        day = days[day_index % 7]
-        if len(schedule[day]) < min_per_day + 1:
-            schedule[day].append(reassign.pop(0))
-        day_index += 1
+    unassigned = reassign[:]
+# 3: Reassign anyone that wasn't chosen for over-assigned days
+    while unassigned:
+        name = unassigned.pop(0)
+        for rank_set in rankings:
+            if rank_set[0] == name[0]:
+                for pref in range(1, 8):
+                    if str(pref) in rank_set:
+                        day_index = rank_set.index(str(pref)) - 1
+                        day = days[day_index]
 
+                        allowed_per_day = min_per_day + (1 if extra_slots > 0 else 0)
+
+                        if len(schedule[day]) < allowed_per_day:
+                            schedule[day].append(name)
+                            if extra_slots > 0:
+                                extra_slots -= 1
+                            break
+                else:
+                    continue  # If no slot was found, move to the next preference
+                break  # Exit ranking loop after assignment
+
+    # Fill empty days with "Free Day"
     for day in days:
         if not schedule[day]:
             schedule[day] = ["Free Day"]
@@ -66,7 +81,7 @@ def process_file():
     open("request.txt", "w").close()
 
 
-# Continously loops checking request.txt for modifications/requests
+# Continuously loops checking request.txt for modifications/requests
 def file_monitor():
     last_modified = 0
     while True:
@@ -84,6 +99,7 @@ def file_output(schedule):
     schedule_str = json.dumps(schedule)
     with open("response.txt", "w") as file:
         file.write(schedule_str)
+
 
 # Main
 if __name__ == "__main__":
