@@ -4,6 +4,8 @@ import os
 import random
 
 
+# rankings = list of nested lists containing a name and day of the week preference rankings. Indices 1-6 represent Sun-Sat, and should contain a value 1-7, nonrepeating.
+# Ex: [[Joe, 1, 3, 4, 2, 6, 5, 7]]
 def scheduler(rankings):
     days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     schedule = {day: [] for day in days}
@@ -12,12 +14,14 @@ def scheduler(rankings):
     min_per_day = total_people // 7
     extra_slots = total_people % 7
 
+# 1: Assign each person to their most preferred day
     for rank_set in rankings:
         name = rank_set[0]
         day_index = rank_set[1:].index("1")  # Find the most preferred day (1)
         day = days[day_index]
         schedule[day].append([name])
 
+# 2: If the number of people assigned to a day exceeds the maximum allowed, randomly choose the appropriate amount.
     reassign = []
     for day in days:
         names = schedule[day]
@@ -47,6 +51,7 @@ def scheduler(rankings):
     return schedule
 
 
+# Reads and formats content from request.txt
 def process_file():
     rankings = []
     with open("request.txt", "r") as infile:
@@ -58,10 +63,10 @@ def process_file():
 
     schedule = scheduler(rankings)
     file_output(schedule)
-    # Clear request.txt only *after* response.txt is written
     open("request.txt", "w").close()
 
 
+# Continously loops checking request.txt for modifications/requests
 def file_monitor():
     last_modified = 0
     while True:
@@ -74,12 +79,13 @@ def file_monitor():
         time.sleep(0.5)  # Check every half second
 
 
+# Writes completed schedule to response.txt
 def file_output(schedule):
     schedule_str = json.dumps(schedule)
     with open("response.txt", "w") as file:
         file.write(schedule_str)
 
-
+# Main
 if __name__ == "__main__":
     open("request.txt", "w").close()  # Ensure file exists initially
     file_monitor()
